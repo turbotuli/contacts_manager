@@ -1,0 +1,6 @@
+<h1><%= @contact.name %></h1>
+<p>Phone Number: <%= @contact.phone_number %></p>
+<a href="/">Back to Contacts</a>
+<form action="/contacts/<%= @contact.id %>" method="post">
+  <button type="submit" value="Delete">Delete</button>
+</form>

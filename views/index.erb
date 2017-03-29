@@ -1,0 +1,24 @@
+<h1>Contacts</h1>
+
+<ul>
+  <% @contacts.each do |contact| %>
+    <li> <a href="contacts/<%= contact.id %>"><%= contact.name %> - <%= contact.phone_number %></a></li>
+  <% end %>
+</ul>
+<p> <% if !@previous_page.nil? %>
+  <a href="/?page=<%= @previous_page %>">Previous</a>
+<% end %>
+<a href="/?page=<%= @next_page %>">Next</a></p>
+<p><a href="/new">Add New Contact</a></p>
+
+<form action="/search" method="post" id="search">
+  <fieldset>
+    <legend>Search Contacts</legend>
+    <label for="first_name">First Name</label>
+    <input id="first_name" name="first_name" type="text" autofocus></input>
+    <label for="last_name">Last Name</label>
+    <input id="last_name" name="last_name" type="text"></input>
+    <button name="search" type="submit">Search</button>
+  </fieldset>
+</form>
+<% @error if @error %>
