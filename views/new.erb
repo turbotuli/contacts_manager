@@ -2,11 +2,16 @@
   <fieldset>
     <legend>Add New Contact</legend>
     <label for="first_name">First Name</label>
-    <input id="first_name" name="first_name" type="text" autofocus></input>
+    <input id="first_name" name="first_name" type="text" autofocus value="<%= @first_name %>"></input>
     <label for="last_name">Last Name</label>
-    <input id="last_name" name="last_name" type="text"></input>
+    <input id="last_name" name="last_name" type="text" value="<%= @last_name %>"></input>
     <label for="phone_number]">Phone</label>
-    <input id="phone_number]" name="phone_number]" type="text"></input>
+    <input id="phone_number]" name="phone_number]" type="text" value="<%= @phone_number %>"></input>
     <input type="submit"></input>
   </fieldset>
 </form>
+<% if @errors != nil %>
+  <% @errors.each do |error| %>
+        <p><%= error %></p>
+  <% end %>
+<% end %>

@@ -21,6 +21,26 @@ get '/' do
   erb :index
 end
 
+get '/new' do
+  erb :new
+end
+
+post '/new' do
+
+  contact = Contact.new(first_name: params["first_name"], last_name: params["last_name"],
+  phone_number: params["phone_number"])
+  if contact.valid?
+    contact.save
+    redirect '/'
+  else
+    @first_name = params['first_name']
+    @last_name = params['last_name']
+    @phone_number = params['phone_number']
+    
+    erb :new
+  end
+end
+
 get '/contacts/:id' do
   @contact = Contact.where(id: params["id"]).first
   erb :show
@@ -30,18 +50,4 @@ post '/contacts/:id' do
   contact = Contact.where(id: params["id"]).first
   contact.delete
   redirect '/'
-end
-
-get '/new' do
-  erb :new
-end
-
-post '/new' do
-  contact = Contact.create(first_name: params["first_name"], last_name: params["last_name"],
-    phone_number: params["phone_number"])
-  redirect '/'
-end
-
-post '/search' do
-  binding.pry
 end
